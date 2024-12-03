@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styleLogin.css}">
+  <title>KMA Journey</title>
+  <link rel="icon" th:href="@{/img/logo.png}" type="image/x-icon">
+</head>
+<body>
+<div class="main">
+  <div class="lg-2">
+    <div class="logo-side">
+      <img th:src="@{/img/logo.png}" alt="" class="logo_link">
+      <div class="description">
+        <div class="schoolName">ACADEMY OF CRYPTOGRAPHY TECHNIQUES</div>
+        <div class="projectName">KMA Journey</div>
+        <div class="slogan">Innovate - Inspire - Impact</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="lg-2">
+    <div class="login-wrapper">
+      <div class="login-side">
+        <div class="login-span">Create new account</div>
+      </div>
+      <div class="login-form-wrap">
+        <form action="/login" method="POST" class="login-form">
+          <div class="mb-3">
+            <label for="userNameInput" class="form-label">Username</label>
+            <input  name="username" type="email" class="form-control"  id="userNameInput" >
+          </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" id="passwordInput">
+            </div>
+            <div class="mb-3">
+              <label for="retypepasswordInput" class="form-label">Retype password</label>
+              <input type="password" class="form-control" id="retypepasswordInput">
+            </div>
+
+            <div class="form-footer">
+
+              <button type="submit" class="btn btn-primary login-button">SAVE</button>
+
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

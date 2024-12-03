@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMA Journey</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/font/fontawesome-free-6.6.0-web/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styleHome.css}">
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/png">
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <div class="header_wrapper">
+            <div class="header_logo">
+                <img th:src="@{/img/logo.png}" alt="" class="header_logo_link">
+            </div>
+            <div class="header_projectname">
+                KMA JOURNEY
+            </div>
+            <div  th:text=" 'Welcome ' + ${username != null ?  username : ''}" class="header_welcome">
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="fetch_field">
+            <form action="/sv" method="POST" class="fetch_field_form">
+                <input th:value="${sv != null ? sv.sinhVien.maSinhVien : ''}"  type="text" name="masv" class="fetch_field_input" placeholder="Nhập mã sinh viên">
+                <div th:if="${error!=null}" class="fetch_field_notify">
+                    <div th:text="${error}"></div>
+                </div>
+                <select class = "fetch_field_select">
+                    <option class ="fetch_field_option" value="value1">Xếp hạng lớp</option>
+                    <option class ="fetch_field_option" value="value2">Xếp hạng khối</option>
+                    <option class ="fetch_field_option" value="value3">Xếp hạng khóa</option>
+                    <option class ="fetch_field_option" value="value3">Xếp hạng trường</option>
+                </select>
+                <button type="submit" class="fetch_field-button">Fetch</button>
+            </form>
+        </div>
+
+
+
+
+        <!--RESULT-->
+
+        <div th:if="${sv!=null}" class="result_field">
+            <div class="infor_wrapper">
+                <div  th:text="${sv.sinhVien.tenSinhVien}" class="infor_name"> </div>
+                <div  class="infor_descripbe">
+                    <ul class="infor_list">
+                        <li th:text="${sv.sinhVien.maSinhVien}" class="infor_items infor_studentcode"></li>
+                        <li th:text="${sv.sinhVien.lop}" class="infor_items infor_class"></li>
+                        <li th:text="${sv.sinhVien.khoa}" class="infor_items infor_top"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="infor_summary">
+                <ul class="infor_summary_list">
+                    <li class="infor_summary_items infor_completed">
+                        <div class="infor_summary_items-icon"><i class="far fa-check-circle items_summary_icon"></i></div>
+                        <span class="infor_summary_items_title">Số môn đã hoàn thành</span>
+                        <div th:text="${sv.completed}" class="infor_summary_items_number"></div>
+                    </li>
+                    <li class="infor_summary_items infor_incomplete">
+                        <div class="infor_summary_items-icon"> <i class="fas fa-exclamation fa-lg items_summary_icon"></i></div>
+                        <span class="infor_summary_items_title">Số môn còn nợ</span>
+                        <div th:text="${sv.incomplete}"class="infor_summary_items_number"></div>
+                    </li>
+                    <li class="infor_summary_items infor_gpa">
+                        <div class="infor_summary_items-icon"> <i class="fas fa-wave-square  items_summary_icon"></i></div>
+                        <span class="infor_summary_items_title">GPA</span>
+                        <div th:text="${sv.GPA}" class="infor_summary_items_number"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div th:if ="${sv!=null}" class="result_field_table">
+            <table class="table table_field">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên học phần</th>
+                    <th scope="col">Điểm thành phần 1</th>
+                    <th scope="col">Điểm thành phần 2</th>
+                    <th scope="col">Điểm thi</th>
+                    <th scope="col">Điểm tổng kết</th>
+                    <th scope="col">Điểm chữ</th>
+                    <th scope="col">Học kỳ</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hocphan, itestart:${sv.sinhVien.danhSachHocPhan}" >
+                    <th scope="row" th:text="${itestart.index+1}" style="font-weight: 100; min-width: 30px">  </th>
+                    <td th:text="${hocphan.tenHocPhan}"> </td>
+                    <td th:text="${hocphan.diemThanhPhan1}"> </td>
+                    <td th:text="${hocphan.diemThanhPhan2}"> </td>
+                    <td th:text="${hocphan.diemThi}"> </td>
+                    <td th:text="${hocphan.diemTongKet}"> </td>
+                    <td th:text="${hocphan.diemChu}"> </td>
+                    <td th:text="${hocphan.hocKi}"> </td>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="footer_message">
+            If you have any trouble, just contact me at vanphuctruggc@gmail.com
+        </div>
+        <div class="footer_origin"> Just a chill guy 😌
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
