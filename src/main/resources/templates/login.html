@@ -25,13 +25,17 @@
             <div class="login-side">
                 <div class="login-span">LOGIN</div>
             <div class="login-form-wrap">
+                <div th:text="${error != null ? error : ''}" class="alert" style="text-align: center;"></div>
                 <form action="/home" method="POST" class="login-form">
                     <div class="mb-3">
                         <label for="userNameInput" class="form-label">Username</label>
-                        <input th:value="${username != null ? username : ''}"  type="text" class="form-control" name ="username" id="userNameInput" >
+                        <input th:value="${username != null ? username : ''}"  type="text" class="form-control" name ="username" id="userNameInput" required >
+
+                    </div>
                         <div class="mb-3">
                             <label for="passwordInput" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="passwordInput">
+                            <input name = "password" type="password" class="form-control" id="passwordInput" required>
+
                         </div>
                         <div class="form-footer">
                             <a href="/register" class="creat-account">Create new account</a>
@@ -43,5 +47,12 @@
         </div>
     </div>
 </div>
+    <script>
+        const alertElement = document.querySelector('.alert')
+        const inputname = document.getElementById('userNameInput');
+        document.getElementById('userNameInput').onclick = function(){
+          alertElement.textContent="";
+        }
+    </script>
 </body>
 </html>

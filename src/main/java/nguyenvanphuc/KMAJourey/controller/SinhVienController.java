@@ -29,24 +29,7 @@ public class SinhVienController {
         return "home";
     }
 
-    @GetMapping("/")
-    public String login(){
-        return "login";
-    }
-    @PostMapping("/home")
-    public String home(@RequestParam("username") String username, Model model){
-        model.addAttribute("username",username);
-        return "home";
-    }
-    @PostMapping("/login")
-    public String login2(@RequestParam("username") String username, Model model){
-        model.addAttribute("username",username);
-        log.info(username);
-        return "login";
-    }
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
+
+
 
 }

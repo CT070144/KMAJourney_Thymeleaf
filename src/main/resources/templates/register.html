@@ -26,19 +26,21 @@
         <div class="login-span">Create new account</div>
       </div>
       <div class="login-form-wrap">
-        <form action="/login" method="POST" class="login-form">
+        <form action="/register" method="POST" class="login-form">
           <div class="mb-3">
             <label for="userNameInput" class="form-label">Username</label>
-            <input  name="username" type="email" class="form-control"  id="userNameInput" >
+            <input  name="username" type="text" class="form-control"  id="userNameInput" required >
+            <div  th:text="${error != null ? error : ''}" class="alert"></div>
           </div>
             <div class="mb-3">
               <label for="passwordInput" class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" id="passwordInput">
+              <input name="password" type="password" class="form-control"  id="passwordInput" required>
             </div>
             <div class="mb-3">
               <label for="retypepasswordInput" class="form-label">Retype password</label>
-              <input type="password" class="form-control" id="retypepasswordInput">
+              <input name="retypePassword" type="password" class="form-control" id="retypepasswordInput" required>
             </div>
+          <div  th:text="${errorPassword != null ? errorPassword : ''}" class="alert"></div>
 
             <div class="form-footer">
 
@@ -51,5 +53,12 @@
     </div>
   </div>
 </div>
+<script>
+  const alertElement = document.querySelector('.alert')
+  const inputname = document.getElementById('userNameInput');
+  document.getElementById('userNameInput').onclick = function(){
+    alertElement.textContent="";
+  }
+</script>
 </body>
 </html>
