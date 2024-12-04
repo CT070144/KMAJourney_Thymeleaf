@@ -13,6 +13,8 @@
 <body>
 <div class="main">
     <div class="header">
+        <div class="header_navbar_icon">
+            <i class="fa-solid fa-bars-staggered"></i></div>
         <div class="header_wrapper">
             <div class="header_logo">
                 <img th:src="@{/img/logo.png}" alt="" class="header_logo_link">
@@ -24,6 +26,14 @@
             LOG OUT
             </a>
         </div>
+    </div>
+    <div class="header_navbar">
+        <ul class="navbar_list">
+            <li class="navbar_item"><a href="#" class="navbar_link"> <i class="navbar_icon fa-solid fa-house"></i> Home</a></li>
+            <li class="navbar_item"><a href="#" class="navbar_link"> <i class="navbar_icon fa-solid fa-bars-progress"></i> Manage</a></li>
+            <li class="navbar_item"><a href="#" class="navbar_link"> <i class="navbar_icon fa-solid fa-message"></i> Contact</a></li>
+            <li class="navbar_item"><a href="#" class="navbar_link"> <i class="navbar_icon fa-solid fa-cart-shopping"></i> Shop</a></li>
+        </ul>
     </div>
     <div class="container">
         <div class="fetch_field">
@@ -117,6 +127,15 @@
     </div>
 
 </div>
-
+<script>
+    const icon = document.querySelector('.header_navbar_icon');
+    const navbar = document.querySelector('.header_navbar');
+    icon.onclick =function(){
+     if(getComputedStyle(navbar).display === 'none')
+      navbar.style.display = 'block';
+     else
+     navbar.style.display = 'none';
+    }
+</script>
 </body>
 </html>
